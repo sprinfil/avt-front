@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { icons } from "@/lib/icons";
 import { useNavigate } from "react-router-dom";
 
-export const FiltrosUsuarios = () => {
+export const FiltrosPersonas = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -13,22 +13,21 @@ export const FiltrosUsuarios = () => {
             className="ml-auto md:hidden flex w-full"
             variant={"accion"}
             onClick={() => {
-              navigate("/dashboard/usuariosCrear");
+              navigate("/dashboard/personasCrear");
             }}
           >
-            Agregar usuario
+            Agregar persona
             {icons.agregar()}
           </Button>
           <Input placeholder="Nombre" className="md:w-50 w-full" />
-          <Input placeholder="Usuario " className="md:w-50 w-full" />
           <Button
             className="ml-auto hidden md:flex"
             variant={"accion"}
             onClick={() => {
-              navigate("/dashboard/usuariosCrear");
+              navigate("/dashboard/personasCrear");
             }}
           >
-            Agregar usuario
+            Agregar persona
             {icons.agregar()}
           </Button>
         </div>

@@ -25,6 +25,7 @@ export const Login = () => {
           <div className="mt-5 ">
             <Button
               className="w-full"
+              variant={"accion"}
               onClick={() => {
                 navigate("/dashboard/zonas");
                 setOpcionMenu("zonas");

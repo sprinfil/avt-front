@@ -8,21 +8,10 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-  type ColumnDef,
   type ColumnFiltersState,
   type SortingState,
   type VisibilityState,
 } from "@tanstack/react-table";
-import { ChevronDown } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -32,57 +21,22 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const data: Payment[] = [
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@example.com",
-  },
-  {
-    id: "3u1reuv4",
-    amount: 242,
-    status: "success",
-    email: "Abe45@example.com",
-  },
-  {
-    id: "derv1ws0",
-    amount: 837,
-    status: "processing",
-    email: "Monserrat44@example.com",
-  },
-  {
-    id: "5kma53ae",
-    amount: 874,
-    status: "success",
-    email: "Silas22@example.com",
-  },
-  {
-    id: "bhqecj4p",
-    amount: 721,
-    status: "failed",
-    email: "carmella@example.com",
-  },
-];
+// export const columns: ColumnDef<Payment>[] = [
+//   {
+//     accessorKey: "status",
+//     header: "Status",
+//     cell: ({ row }) => (
+//       <div className="capitalize">{row.getValue("status")}</div>
+//     ),
+//   },
+// ];
 
-export type Payment = {
-  id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
+type SharedDataTableProps = {
+  columns?: any[];
+  data?: any[];
 };
 
-export const columns: ColumnDef<Payment>[] = [
-  {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
-    ),
-  },
-];
-
-export function SharedDataTable() {
+export function SharedDataTable({ columns = [], data = [] }: SharedDataTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -114,12 +68,12 @@ export function SharedDataTable() {
     <div className="w-full">
       <div className="overflow-hidden rounded-md border">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-muted">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="">
                       {header.isPlaceholder
                         ? null
                         : flexRender(

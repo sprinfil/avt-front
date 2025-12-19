@@ -8,6 +8,9 @@ import { Personas } from "./views/Personas/Personas";
 import { Usuarios } from "./views/Usuarios/Usuarios";
 import { Ventas } from "./views/Ventas/Ventas";
 import { UsuariosCrear } from "./views/Usuarios/UsuariosCrear";
+import { UsuariosVer } from "./views/Usuarios/UsuariosVer";
+import { CrearPersona } from "./views/Personas/CrearPersona";
+import { VerPersonsa } from "./views/Personas/VerPersonsa";
 
 const router = createBrowserRouter([
   {
@@ -45,12 +48,24 @@ const router = createBrowserRouter([
         element: <Personas />,
       },
       {
+        path: "personasCrear",
+        element: <CrearPersona />,
+      },
+      {
+        path: "personasVer",
+        element: <VerPersonsa />,
+      },
+      {
         path: "usuarios",
         element: <Usuarios />,
       },
       {
         path: "usuariosCrear",
         element: <UsuariosCrear />,
+      },
+      {
+        path: "usuariosVer",
+        element: <UsuariosVer />,
       },
       {
         path: "ventas",

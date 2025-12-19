@@ -18,8 +18,8 @@ export const UsuarioFormulario = () => {
   });
 
   const initialValues = {
-    name: "",
-    username: "",
+    name: "josue diaz",
+    username: "josdzz",
     password: "",
     confirm_password: "",
   };

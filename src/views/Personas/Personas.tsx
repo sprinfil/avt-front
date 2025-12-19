@@ -1,7 +1,12 @@
-import React from 'react'
+import { SharedDataTable } from "@/components/DataTableShared/SharedDataTable";
+import { FiltrosPersonas } from "@/components/Personas/FiltrosPersonas";
 
 export const Personas = () => {
   return (
-    <div>Personas</div>
-  )
-}
+    <>
+      <p className="text-2xl ">Personas</p>
+      <FiltrosPersonas />
+      <SharedDataTable />
+    </>
+  );
+};
