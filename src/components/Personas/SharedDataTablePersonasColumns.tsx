@@ -2,7 +2,7 @@ import { icons } from "@/lib/icons";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 
-export const columnsUsuarios = [
+export const columnsPersonas = [
   {
     accessorKey: "nombre",
     header: "Nombre",

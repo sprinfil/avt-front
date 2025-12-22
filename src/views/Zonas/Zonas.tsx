@@ -1,3 +1,9 @@
+import { Mapa } from "@/components/Zonas/Mapa/Mapa";
 export const Zonas = () => {
-  return <div>Zonas</div>;
+  return (
+    <>
+      <Mapa />
+
+    </>
+  );
 };

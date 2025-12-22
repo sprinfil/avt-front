@@ -11,7 +11,7 @@
   height: 2px;
   left: 0;
   bottom: -2px; /* espacio debajo del texto */
-  background-color: #142157; /* color del underline */
+  background-color: #00AC47; /* color del underline */
   transition: width 0.3s ease;
 }
 

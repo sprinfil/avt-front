@@ -11,15 +11,10 @@ import {
 } from "@/components/ui/sidebar";
 import { useNavigate } from "react-router-dom";
 import { items } from "./items";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronUp } from "lucide-react";
 import { useLogOut } from "@/lib/User/hooks/useLogOutHook";
 import ZustandPrincipal from "@/lib/ZustandPrincipal";
+import { Button } from "../ui/button";
+import { LogOut, User } from "lucide-react";
 
 export function AppSidebar() {
   const navigate = useNavigate();
@@ -60,24 +55,27 @@ export function AppSidebar() {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild className="cursor-pointer">
-                <SidebarMenuButton>
-                  <p>Josue Díaz</p>
-                  <ChevronUp className="ml-auto" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent side="top" className="w-57.5">
-                <DropdownMenuItem
-                  className="h-12.5"
-                  onClick={() => {
-                    logOut();
-                  }}
-                >
-                  <span className="text-red-500">Cerrar sesión</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
+                <User className="h-5 w-5 text-muted-foreground" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm font-medium">Josue Díaz</span>
+                <span className="text-xs text-muted-foreground">
+                  Administrador
+                </span>
+              </div>
+            </div>
+            <Button
+              variant="destructive"
+              className="w-full flex items-center gap-2"
+              onClick={() => {
+                logOut();
+              }}
+            >
+              <LogOut className="h-4 w-4" />
+              Cerrar sesión
+            </Button>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
