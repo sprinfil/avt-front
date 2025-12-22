@@ -15,6 +15,7 @@ import { useLogOut } from "@/lib/User/hooks/useLogOutHook";
 import ZustandPrincipal from "@/lib/ZustandPrincipal";
 import { Button } from "../ui/button";
 import { LogOut, User } from "lucide-react";
+import { images } from "@/lib/images";
 
 export function AppSidebar() {
   const navigate = useNavigate();
@@ -25,7 +26,8 @@ export function AppSidebar() {
     <Sidebar variant="floating">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>AVT</SidebarGroupLabel>
+          <img src={images.logo} className="w-[50px] w-[50px]" alt="" />
+          {/* <SidebarGroupLabel>AVT</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (

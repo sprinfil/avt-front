@@ -3,7 +3,6 @@ export const Zonas = () => {
   return (
     <>
       <Mapa />
-
     </>
   );
 };

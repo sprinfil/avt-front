@@ -43,6 +43,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-accion: var(--accion);
+  --color-secundario: var(--secundario);
 }
 
 :root {
@@ -54,7 +55,8 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
-  --accion: #009921;
+  --accion: #0173b9;
+  --secundario: "#FAFBFC";
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -123,4 +125,3 @@
     @apply bg-background text-foreground;
   }
 }
-

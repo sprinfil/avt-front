@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { icons } from "@/lib/icons";
+import { images } from "@/lib/images";
 import ZustandPrincipal from "@/lib/ZustandPrincipal";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +12,7 @@ export const Login = () => {
     <div className="w-full h-screen bg-[#FAFBFC] flex flex-col items-center justify-center">
       <div className="w-125 bg-white shadow-lg rounded-md flex flex-col">
         <div className="w-full  flex items-center justify-center mt-10 ">
-          {icons.user("w-[60px] h-[60px]")}
+          <img src={images.logo} alt="" className="h-[100px] w-[100px]" />
         </div>
 
         <div className="px-10 flex-1 flex flex-col pb-12.5 mt-7.5">

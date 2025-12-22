@@ -1,20 +1,16 @@
 import { SharedInput } from "@/components/SharedInput/SharedInput";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { icons } from "@/lib/icons";
 import { FieldArray, Form, Formik } from "formik";
 import { usePersonaFormData } from "./usePersonaFormData";
+import { SharedSelect } from "@/components/SharedSelect/SharedSelect";
+import { Input } from "@/components/ui/input";
+import { SelectorPais } from "@/components/SelectorPais/SelectorPais";
 
 export const PersonaForm = () => {
-  const { personaFormInitialValues, PersonaSchema } = usePersonaFormData();
+  const { personaFormInitialValues, PersonaSchema, calcularEdad } =
+    usePersonaFormData();
 
   return (
     <>
@@ -25,8 +21,18 @@ export const PersonaForm = () => {
           console.log(values);
         }}
       >
-        {({ values, errors, touched, handleChange, handleBlur }) => (
+        {({
+          values,
+          errors,
+          touched,
+          setFieldValue,
+          handleChange,
+          handleBlur,
+        }) => (
           <Form>
+            <Button type="submit" className="mb-5">
+              Guardar {icons.guardar()}
+            </Button>
             <div className="grid gap-4 grid-cols-1 md:grid-cols-2 pb-10">
               <Card className="bg-[#FAFBFC]">
                 <CardHeader>
@@ -50,6 +56,7 @@ export const PersonaForm = () => {
                     value={values.apellido_paterno}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    placeholder="Apellido paterno"
                     error={
                       touched.apellido_paterno ? errors.apellido_paterno : ""
                     }
@@ -60,6 +67,7 @@ export const PersonaForm = () => {
                     name="apellido_materno"
                     value={values.apellido_materno}
                     onChange={handleChange}
+                    placeholder="Apellido materno"
                     onBlur={handleBlur}
                     error={
                       touched.apellido_materno ? errors.apellido_materno : ""
@@ -73,15 +81,89 @@ export const PersonaForm = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={touched.curp ? errors.curp : ""}
+                    placeholder="CURP"
                   />
 
                   <SharedInput
                     label="RFC"
                     name="rfc"
+                    placeholder="RFC"
                     value={values.rfc}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={touched.rfc ? errors.rfc : ""}
+                  />
+
+                  <SharedSelect
+                    label="Sexo"
+                    value={values.sexo}
+                    error={touched.sexo ? errors.sexo : ""}
+                    options={[
+                      { text: "Masculino", value: "masculino" },
+                      { text: "Femenino", value: "femenino" },
+                    ]}
+                    onChange={(value) => setFieldValue("sexo", value)}
+                  />
+
+                  <SharedInput
+                    label="Fecha de nacimiento"
+                    name="fecha_nacimiento"
+                    type="date"
+                    placeholder="Fecha de nacimiento"
+                    value={values.fecha_nacimiento}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={
+                      touched.fecha_nacimiento ? errors.fecha_nacimiento : ""
+                    }
+                  />
+
+                  <Input
+                    placeholder="edad"
+                    value={"Edad: " + calcularEdad(values.fecha_nacimiento)}
+                  />
+
+                  <SharedSelect
+                    label="Nacionalidad"
+                    value={values.nacionalidad}
+                    error={touched.nacionalidad ? errors.nacionalidad : ""}
+                    options={[
+                      { text: "Mexicana", value: "mexicana" },
+                      { text: "Estadounidense", value: "estadounidense" },
+                    ]}
+                    onChange={(value) => setFieldValue("nacionalidad", value)}
+                  />
+                  <SharedSelect
+                    label="Estado civil"
+                    value={values.estado_civil}
+                    error={touched.estado_civil ? errors.estado_civil : ""}
+                    options={[
+                      { text: "Solter@", value: "soltero" },
+                      { text: "Casad@", value: "casado" },
+                    ]}
+                    onChange={(value) => setFieldValue("estado_civil", value)}
+                  />
+                  <SharedInput
+                    label="INE"
+                    name="ine"
+                    placeholder="INE"
+                    value={values.ine}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched.ine ? errors.ine : ""}
+                  />
+                  <SharedInput
+                    label="Ocupacion o profesión"
+                    name="ocupacion_profesion"
+                    placeholder="Ocupación o profesión"
+                    value={values.ocupacion_profesion}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={
+                      touched.ocupacion_profesion
+                        ? errors.ocupacion_profesion
+                        : ""
+                    }
                   />
                 </CardContent>
               </Card>
@@ -92,10 +174,32 @@ export const PersonaForm = () => {
                 </CardHeader>
 
                 <CardContent className="flex flex-col gap-2">
+                  <SelectorPais
+                    values={values}
+                    errors={errors}
+                    setFieldValue={setFieldValue}
+                    pais_field={"pais_nacimineto"}
+                    estado_field={"estado_nacimiento"}
+                    ciudad_field={"municipio_nacimiento"}
+                  />
+                  <SharedInput
+                    label="Localidad"
+                    name="localidad_nacimiento"
+                    value={values.localidad_nacimiento}
+                    placeholder="Localidad"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={
+                      touched.localidad_nacimiento
+                        ? errors.localidad_nacimiento
+                        : ""
+                    }
+                  />
                   <SharedInput
                     label="Calle"
                     name="calle"
                     value={values.calle}
+                    placeholder="Calle"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     error={touched.calle ? errors.calle : ""}
@@ -104,6 +208,7 @@ export const PersonaForm = () => {
                   <SharedInput
                     label="Número exterior"
                     name="numero_exterior"
+                    placeholder="Número exterior"
                     value={values.numero_exterior}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -115,6 +220,7 @@ export const PersonaForm = () => {
                   <SharedInput
                     label="Colonia"
                     name="colonia"
+                    placeholder="Colonia"
                     value={values.colonia}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -124,6 +230,7 @@ export const PersonaForm = () => {
                   <SharedInput
                     label="Código postal"
                     name="codigo_postal"
+                    placeholder="Codigo postal"
                     value={values.codigo_postal}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -141,6 +248,7 @@ export const PersonaForm = () => {
                   <SharedInput
                     label="Celular"
                     name="celular"
+                    placeholder="Celular"
                     value={values.celular}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -150,6 +258,7 @@ export const PersonaForm = () => {
                   <SharedInput
                     label="Teléfono"
                     name="telefono"
+                    placeholder="Teléfono"
                     value={values.telefono}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -159,6 +268,7 @@ export const PersonaForm = () => {
                   <SharedInput
                     label="Correo electrónico"
                     name="correo_electronico"
+                    placeholder="Correo electrónico"
                     value={values.correo_electronico}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -196,6 +306,7 @@ export const PersonaForm = () => {
                                   ? errors.referencias?.[index]?.nombres
                                   : ""
                               }
+                              placeholder="Nombre"
                             />
 
                             <SharedInput
@@ -209,6 +320,7 @@ export const PersonaForm = () => {
                                   ? errors.referencias?.[index]?.celular
                                   : ""
                               }
+                              placeholder="Celular"
                             />
 
                             <SharedInput
@@ -222,6 +334,7 @@ export const PersonaForm = () => {
                                   ? errors.referencias?.[index]?.parentesco
                                   : ""
                               }
+                              placeholder="Parentesco"
                             />
 
                             {values.referencias.length > 1 && (

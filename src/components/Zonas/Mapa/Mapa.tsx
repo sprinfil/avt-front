@@ -25,7 +25,7 @@ export const Mapa = () => {
       <MapContainer
         center={[24.139971095859845, -110.3137883959629]}
         zoom={16}
-        style={{ height: "700px", width: "100%", borderRadius: "20px" }}
+        style={{ height: "500px", width: "100%", borderRadius: "20px" }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

@@ -4,24 +4,23 @@ import * as Yup from "yup";
 export const usePersonaFormData = () => {
   const [personaFormInitialValues, setPersonaInitialValues] = useState({
     // Datos personales
-    nombres: "",
-    apellido_paterno: "",
-    apellido_materno: "",
-    sexo: "",
-    fecha_nacimiento: "",
-    edad: "",
-    nacionalidad: "Mexicana",
-    estado_civil: "",
-    curp: "",
-    rfc: "",
-    ine: "",
-    ocupacion_profesion: "",
+    nombres: "", //
+    apellido_paterno: "", //
+    apellido_materno: "", //
+    sexo: "", //
+    fecha_nacimiento: "", //
+    nacionalidad: "mexicana",
+    estado_civil: "soltero",
+    curp: "", //
+    rfc: "", //
+    ine: "", //
+    ocupacion_profesion: "", //
 
     // Lugar de nacimiento / catálogo
-    estado_catalogo: "",
-    municipio_catalogo: "",
-    ciudad_catalogo: "",
-    pais_catalogo: "México",
+    pais_nacimineto: "mexico",
+    estado_nacimiento: "Baja California Sur",
+    municipio_nacimiento: "La Paz",
+    localidad_nacimiento: "La Paz",
 
     // Domicilio
     calle: "",
@@ -29,10 +28,10 @@ export const usePersonaFormData = () => {
     numero_exterior: "",
     colonia: "",
     codigo_postal: "",
-    estado: "",
-    municipio: "",
-    ciudad: "",
-    pais: "México",
+    estado_domicilio: "",
+    municipio_domicilio: "",
+    localidad_domicilio: "",
+    pais_domicilio: "México",
 
     // Contacto
     celular: "",
@@ -54,14 +53,16 @@ export const usePersonaFormData = () => {
 
   const PersonaSchema = Yup.object({
     nombres: Yup.string().required("Los nombres son obligatorios"),
-    apellido_paterno: Yup.string().required("El apellido paterno es obligatorio"),
-    apellido_materno: Yup.string().required("El apellido materno es obligatorio"),
+    apellido_paterno: Yup.string().required(
+      "El apellido paterno es obligatorio"
+    ),
+    apellido_materno: Yup.string().required(
+      "El apellido materno es obligatorio"
+    ),
     sexo: Yup.string().required("El sexo es obligatorio"),
-    fecha_nacimiento: Yup.date().required("La fecha de nacimiento es obligatoria"),
-    edad: Yup.number()
-      .typeError("La edad debe ser numérica")
-      .min(0, "Edad inválida")
-      .required("La edad es obligatoria"),
+    fecha_nacimiento: Yup.date().required(
+      "La fecha de nacimiento es obligatoria"
+    ),
     nacionalidad: Yup.string().required("La nacionalidad es obligatoria"),
     estado_civil: Yup.string().required("El estado civil es obligatorio"),
     curp: Yup.string()
@@ -77,10 +78,12 @@ export const usePersonaFormData = () => {
     ),
 
     // Catálogos
-    estado_catalogo: Yup.string().required("El estado es obligatorio"),
-    municipio_catalogo: Yup.string().required("El municipio es obligatorio"),
-    ciudad_catalogo: Yup.string().required("La ciudad o localidad es obligatoria"),
-    pais_catalogo: Yup.string().required("El país es obligatorio"),
+    estado_nacimineto: Yup.string().required("El estado es obligatorio"),
+    municipio_nacimineto: Yup.string().required("El municipio es obligatorio"),
+    localidad_nacimineto: Yup.string().required(
+      "La ciudad o localidad es obligatoria"
+    ),
+    pais_nacimineto: Yup.string().required("El país es obligatorio"),
 
     // Domicilio
     calle: Yup.string().required("La calle es obligatoria"),
@@ -90,10 +93,10 @@ export const usePersonaFormData = () => {
     codigo_postal: Yup.string()
       .length(5, "El código postal debe tener 5 dígitos")
       .required("El código postal es obligatorio"),
-    estado: Yup.string().required("El estado es obligatorio"),
-    municipio: Yup.string().required("El municipio es obligatorio"),
-    ciudad: Yup.string().required("La ciudad es obligatoria"),
-    pais: Yup.string().required("El país es obligatorio"),
+    estado_domicilio: Yup.string().required("El estado es obligatorio"),
+    municipio_domicilio: Yup.string().required("El municipio es obligatorio"),
+    localidad_domicilio: Yup.string().required("La ciudad es obligatoria"),
+    pais_domicilio: Yup.string().required("El país es obligatorio"),
 
     // Contacto
     celular: Yup.string()
@@ -121,7 +124,21 @@ export const usePersonaFormData = () => {
     archivos: Yup.array(),
   });
 
+  const calcularEdad = (fechaNacimiento: string) => {
+    if (!fechaNacimiento) return 0;
 
-  return { personaFormInitialValues, PersonaSchema }
-}
+    const hoy = new Date();
+    const nacimiento = new Date(fechaNacimiento);
 
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    const mes = hoy.getMonth() - nacimiento.getMonth();
+
+    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+      edad--;
+    }
+
+    return edad;
+  };
+
+  return { personaFormInitialValues, PersonaSchema, calcularEdad };
+};
