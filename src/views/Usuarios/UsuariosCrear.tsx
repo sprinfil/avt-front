@@ -18,7 +18,9 @@ export const UsuariosCrear = () => {
           },
         ]}
       />
-      <UsuarioFormulario />
+      <div className="mt-3">
+        <UsuarioFormulario />
+      </div>
     </>
   );
 };

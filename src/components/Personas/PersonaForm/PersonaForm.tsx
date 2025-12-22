@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { icons } from "@/lib/icons";
 import { FieldArray, Form, Formik } from "formik";
-import { usePersonaFormData } from "./usePersonaFormData";
+import { usePersonaFormData, type Referencia } from "./usePersonaFormData";
 import { SharedSelect } from "@/components/SharedSelect/SharedSelect";
 import { Input } from "@/components/ui/input";
 import { SelectorPais } from "@/components/SelectorPais/SelectorPais";
@@ -28,6 +28,7 @@ export const PersonaForm = () => {
           setFieldValue,
           handleChange,
           handleBlur,
+          setFieldTouched,
         }) => (
           <Form>
             <Button type="submit" className="mb-5">
@@ -102,7 +103,10 @@ export const PersonaForm = () => {
                       { text: "Masculino", value: "masculino" },
                       { text: "Femenino", value: "femenino" },
                     ]}
-                    onChange={(value) => setFieldValue("sexo", value)}
+                    onChange={(value) => {
+                      setFieldValue("sexo", value);
+                      setFieldTouched("sexo", true);
+                    }}
                   />
 
                   <SharedInput
@@ -131,8 +135,12 @@ export const PersonaForm = () => {
                       { text: "Mexicana", value: "mexicana" },
                       { text: "Estadounidense", value: "estadounidense" },
                     ]}
-                    onChange={(value) => setFieldValue("nacionalidad", value)}
+                    onChange={(value) => {
+                      setFieldValue("nacionalidad", value);
+                      setFieldTouched("nacionalidad", true);
+                    }}
                   />
+
                   <SharedSelect
                     label="Estado civil"
                     value={values.estado_civil}
@@ -141,7 +149,10 @@ export const PersonaForm = () => {
                       { text: "Solter@", value: "soltero" },
                       { text: "Casad@", value: "casado" },
                     ]}
-                    onChange={(value) => setFieldValue("estado_civil", value)}
+                    onChange={(value) => {
+                      setFieldValue("estado_civil", value);
+                      setFieldTouched("estado_civil", true);
+                    }}
                   />
                   <SharedInput
                     label="INE"
@@ -168,76 +179,121 @@ export const PersonaForm = () => {
                 </CardContent>
               </Card>
 
-              <Card className="bg-[#FAFBFC]">
-                <CardHeader>
-                  <CardTitle>Domicilio</CardTitle>
-                </CardHeader>
+              <div className="flex flex-col gap-4">
+                <Card className="bg-[#FAFBFC]">
+                  <CardHeader>
+                    <CardTitle>Lugar de nacimiento</CardTitle>
+                  </CardHeader>
 
-                <CardContent className="flex flex-col gap-2">
-                  <SelectorPais
-                    values={values}
-                    errors={errors}
-                    setFieldValue={setFieldValue}
-                    pais_field={"pais_nacimineto"}
-                    estado_field={"estado_nacimiento"}
-                    ciudad_field={"municipio_nacimiento"}
-                  />
-                  <SharedInput
-                    label="Localidad"
-                    name="localidad_nacimiento"
-                    value={values.localidad_nacimiento}
-                    placeholder="Localidad"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={
-                      touched.localidad_nacimiento
-                        ? errors.localidad_nacimiento
-                        : ""
-                    }
-                  />
-                  <SharedInput
-                    label="Calle"
-                    name="calle"
-                    value={values.calle}
-                    placeholder="Calle"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.calle ? errors.calle : ""}
-                  />
+                  <CardContent className="flex flex-col gap-2">
+                    <SelectorPais
+                      values={values}
+                      errors={errors}
+                      setFieldValue={setFieldValue}
+                      pais_field={"pais_nacimiento"}
+                      estado_field={"estado_nacimiento"}
+                      setFieldTouched={setFieldTouched}
+                      ciudad_field={"municipio_nacimiento"}
+                    />
+                    <SharedInput
+                      label="Localidad"
+                      name="localidad_nacimiento"
+                      value={values.localidad_nacimiento}
+                      placeholder="Localidad"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={
+                        touched.localidad_nacimiento
+                          ? errors.localidad_nacimiento
+                          : ""
+                      }
+                    />
+                  </CardContent>
+                </Card>
+                <Card className="bg-[#FAFBFC] flex-1">
+                  <CardHeader>
+                    <CardTitle>Domicilio</CardTitle>
+                  </CardHeader>
 
-                  <SharedInput
-                    label="Número exterior"
-                    name="numero_exterior"
-                    placeholder="Número exterior"
-                    value={values.numero_exterior}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={
-                      touched.numero_exterior ? errors.numero_exterior : ""
-                    }
-                  />
+                  <CardContent className="flex flex-col gap-2">
+                    <SharedInput
+                      label="Calle"
+                      name="calle"
+                      value={values.calle}
+                      placeholder="Calle"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={touched.calle ? errors.calle : ""}
+                    />
 
-                  <SharedInput
-                    label="Colonia"
-                    name="colonia"
-                    placeholder="Colonia"
-                    value={values.colonia}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.colonia ? errors.colonia : ""}
-                  />
+                    <SharedInput
+                      label="Número interior"
+                      name="numero_interior"
+                      placeholder="Número interior"
+                      value={values.numero_interior}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={
+                        touched.numero_interior ? errors.numero_interior : ""
+                      }
+                    />
 
-                  <SharedInput
-                    label="Código postal"
-                    name="codigo_postal"
-                    placeholder="Codigo postal"
-                    value={values.codigo_postal}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    error={touched.codigo_postal ? errors.codigo_postal : ""}
-                  />
-                </CardContent>
-              </Card>
+                    <SharedInput
+                      label="Número exterior"
+                      name="numero_exterior"
+                      placeholder="Número exterior"
+                      value={values.numero_exterior}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={
+                        touched.numero_exterior ? errors.numero_exterior : ""
+                      }
+                    />
+
+                    <SharedInput
+                      label="Colonia"
+                      name="colonia"
+                      placeholder="Colonia"
+                      value={values.colonia}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={touched.colonia ? errors.colonia : ""}
+                    />
+
+                    <SharedInput
+                      label="Código postal"
+                      name="codigo_postal"
+                      placeholder="Codigo postal"
+                      value={values.codigo_postal}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={touched.codigo_postal ? errors.codigo_postal : ""}
+                    />
+                    <SelectorPais
+                      values={values}
+                      errors={errors}
+                      setFieldValue={setFieldValue}
+                      pais_field={"pais_domicilio"}
+                      estado_field={"estado_domicilio"}
+                      ciudad_field={"municipio_domicilio"}
+                      setFieldTouched={setFieldTouched}
+                    />
+                    <SharedInput
+                      label="Localidad"
+                      name="localidad_domicilio"
+                      value={values.localidad_domicilio}
+                      placeholder="Localidad"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      error={
+                        touched.localidad_domicilio
+                          ? errors.localidad_domicilio
+                          : ""
+                      }
+                    />
+                  </CardContent>
+                </Card>
+              </div>
 
               <Card className="bg-[#FAFBFC]">
                 <CardHeader>
@@ -293,7 +349,7 @@ export const PersonaForm = () => {
                         {values.referencias.map((_, index) => (
                           <div
                             key={index}
-                            className="border rounded-lg p-4 flex flex-col gap-2"
+                            className=" p-4 flex flex-col gap-2"
                           >
                             <SharedInput
                               label="Nombre"
@@ -302,9 +358,10 @@ export const PersonaForm = () => {
                               onChange={handleChange}
                               onBlur={handleBlur}
                               error={
-                                touched.referencias?.[index]?.nombres
-                                  ? errors.referencias?.[index]?.nombres
-                                  : ""
+                                (touched.referencias?.[index]?.nombres &&
+                                  (errors.referencias?.[index] as Referencia)
+                                    ?.nombres) ||
+                                ""
                               }
                               placeholder="Nombre"
                             />
@@ -316,9 +373,10 @@ export const PersonaForm = () => {
                               onChange={handleChange}
                               onBlur={handleBlur}
                               error={
-                                touched.referencias?.[index]?.celular
-                                  ? errors.referencias?.[index]?.celular
-                                  : ""
+                                (touched.referencias?.[index]?.celular &&
+                                  (errors.referencias?.[index] as Referencia)
+                                    ?.celular) ||
+                                ""
                               }
                               placeholder="Celular"
                             />
@@ -330,9 +388,10 @@ export const PersonaForm = () => {
                               onChange={handleChange}
                               onBlur={handleBlur}
                               error={
-                                touched.referencias?.[index]?.parentesco
-                                  ? errors.referencias?.[index]?.parentesco
-                                  : ""
+                                (touched.referencias?.[index]?.parentesco &&
+                                  (errors.referencias?.[index] as Referencia)
+                                    ?.parentesco) ||
+                                ""
                               }
                               placeholder="Parentesco"
                             />

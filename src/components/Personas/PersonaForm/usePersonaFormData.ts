@@ -1,6 +1,12 @@
 import { useState } from "react";
 import * as Yup from "yup";
 
+export type Referencia = {
+  nombres: string;
+  celular: string;
+  parentesco: string;
+};
+
 export const usePersonaFormData = () => {
   const [personaFormInitialValues, setPersonaInitialValues] = useState({
     // Datos personales
@@ -17,7 +23,7 @@ export const usePersonaFormData = () => {
     ocupacion_profesion: "", //
 
     // Lugar de nacimiento / catálogo
-    pais_nacimineto: "mexico",
+    pais_nacimiento: "mexico",
     estado_nacimiento: "Baja California Sur",
     municipio_nacimiento: "La Paz",
     localidad_nacimiento: "La Paz",
@@ -28,10 +34,10 @@ export const usePersonaFormData = () => {
     numero_exterior: "",
     colonia: "",
     codigo_postal: "",
-    estado_domicilio: "",
-    municipio_domicilio: "",
-    localidad_domicilio: "",
-    pais_domicilio: "México",
+    estado_domicilio: "Baja California Sur",
+    municipio_domicilio: "La Paz",
+    localidad_domicilio: "La Paz",
+    pais_domicilio: "mexico",
 
     // Contacto
     celular: "",
@@ -52,76 +58,78 @@ export const usePersonaFormData = () => {
   });
 
   const PersonaSchema = Yup.object({
-    nombres: Yup.string().required("Los nombres son obligatorios"),
-    apellido_paterno: Yup.string().required(
-      "El apellido paterno es obligatorio"
-    ),
-    apellido_materno: Yup.string().required(
-      "El apellido materno es obligatorio"
-    ),
-    sexo: Yup.string().required("El sexo es obligatorio"),
-    fecha_nacimiento: Yup.date().required(
-      "La fecha de nacimiento es obligatoria"
-    ),
-    nacionalidad: Yup.string().required("La nacionalidad es obligatoria"),
-    estado_civil: Yup.string().required("El estado civil es obligatorio"),
+    nombres: Yup.string().notRequired(),
+
+    apellido_paterno: Yup.string().notRequired(),
+
+    apellido_materno: Yup.string().notRequired(),
+
+    sexo: Yup.string().notRequired(),
+
+    fecha_nacimiento: Yup.date().nullable().notRequired(),
+
+    nacionalidad: Yup.string().notRequired(),
+
+    estado_civil: Yup.string().notRequired(),
+
     curp: Yup.string()
       .length(18, "La CURP debe tener 18 caracteres")
-      .required("La CURP es obligatoria"),
+      .notRequired(),
+
     rfc: Yup.string()
       .min(12, "RFC inválido")
       .max(13, "RFC inválido")
-      .required("El RFC es obligatorio"),
-    ine: Yup.string().required("El INE es obligatorio"),
-    ocupacion_profesion: Yup.string().required(
-      "La ocupación o profesión es obligatoria"
-    ),
+      .notRequired(),
+
+    ine: Yup.string().notRequired(),
+
+    ocupacion_profesion: Yup.string().notRequired(),
 
     // Catálogos
-    estado_nacimineto: Yup.string().required("El estado es obligatorio"),
-    municipio_nacimineto: Yup.string().required("El municipio es obligatorio"),
-    localidad_nacimineto: Yup.string().required(
-      "La ciudad o localidad es obligatoria"
-    ),
-    pais_nacimineto: Yup.string().required("El país es obligatorio"),
+    estado_nacimiento: Yup.string().notRequired(),
+    municipio_nacimiento: Yup.string().notRequired(),
+    localidad_nacimiento: Yup.string().notRequired(),
+    pais_nacimiento: Yup.string().notRequired(),
 
     // Domicilio
-    calle: Yup.string().required("La calle es obligatoria"),
-    numero_exterior: Yup.string().required("El número exterior es obligatorio"),
-    numero_interior: Yup.string().nullable(),
-    colonia: Yup.string().required("La colonia es obligatoria"),
+    calle: Yup.string().notRequired(),
+    numero_exterior: Yup.string().notRequired(),
+    numero_interior: Yup.string().nullable().notRequired(),
+    colonia: Yup.string().notRequired(),
+
     codigo_postal: Yup.string()
       .length(5, "El código postal debe tener 5 dígitos")
-      .required("El código postal es obligatorio"),
-    estado_domicilio: Yup.string().required("El estado es obligatorio"),
-    municipio_domicilio: Yup.string().required("El municipio es obligatorio"),
-    localidad_domicilio: Yup.string().required("La ciudad es obligatoria"),
-    pais_domicilio: Yup.string().required("El país es obligatorio"),
+      .notRequired(),
+
+    estado_domicilio: Yup.string().notRequired(),
+    municipio_domicilio: Yup.string().notRequired(),
+    localidad_domicilio: Yup.string().notRequired(),
+    pais_domicilio: Yup.string().notRequired(),
 
     // Contacto
     celular: Yup.string()
       .min(10, "El celular debe tener al menos 10 dígitos")
-      .required("El celular es obligatorio"),
-    telefono: Yup.string().nullable(),
+      .notRequired(),
+
+    telefono: Yup.string().nullable().notRequired(),
+
     correo_electronico: Yup.string()
       .email("Correo electrónico inválido")
-      .required("El correo electrónico es obligatorio"),
+      .notRequired(),
 
     // Referencias
     referencias: Yup.array()
       .of(
         Yup.object({
-          nombres: Yup.string().required("El nombre es obligatorio"),
-          celular: Yup.string()
-            .min(10, "Celular inválido")
-            .required("El celular es obligatorio"),
-          parentesco: Yup.string().required("El parentesco es obligatorio"),
+          nombres: Yup.string().notRequired(),
+          celular: Yup.string().min(10, "Celular inválido").notRequired(),
+          parentesco: Yup.string().notRequired(),
         })
       )
-      .min(1, "Debe agregar al menos una referencia"),
+      .notRequired(),
 
     // Archivos
-    archivos: Yup.array(),
+    archivos: Yup.array().notRequired(),
   });
 
   const calcularEdad = (fechaNacimiento: string) => {

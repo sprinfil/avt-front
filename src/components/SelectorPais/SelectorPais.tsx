@@ -1,7 +1,6 @@
 import { SharedSelect } from "../SharedSelect/SharedSelect";
 import { SharedComboBox } from "../SharedComboBox/SharedComboBox";
 import { estadosMexico } from "@/lib/EstadosMexico";
-import { useEffect, useState } from "react";
 import { EstadosUnidosEstados } from "@/lib/EstadosUnidosEstados";
 
 type SelectorPaisProps = {
@@ -12,6 +11,7 @@ type SelectorPaisProps = {
   pais_field: any;
   estado_field: any;
   ciudad_field: any;
+  setFieldTouched: (field: string, value: boolean) => void;
 };
 export const SelectorPais = ({
   values,
@@ -20,6 +20,7 @@ export const SelectorPais = ({
   pais_field,
   estado_field,
   ciudad_field,
+  setFieldTouched,
 }: SelectorPaisProps) => {
   let estadosBd: Record<string, string[]> = estadosMexico;
 
@@ -54,27 +55,36 @@ export const SelectorPais = ({
         ]}
         onChange={(value) => {
           setFieldValue(pais_field, value);
+          setFieldTouched(pais_field, true);
         }}
       />
-      {errors?.[pais_field] && <p>{errors?.[pais_field]}</p>}
+      {errors?.[pais_field] && (
+        <p className="text-red-500">{errors?.[pais_field]}</p>
+      )}
       <SharedComboBox
         defaultValue={values?.[estado_field]}
         label="Estado"
         data={estados}
         onChange={(value) => {
           setFieldValue(estado_field, value);
+          setFieldTouched(estado_field, true);
         }}
       />
-      {errors?.[estado_field] && <p>{errors?.[estado_field]}</p>}
+      {errors?.[estado_field] && (
+        <p className="text-red-500">{errors?.[estado_field]}</p>
+      )}
       <SharedComboBox
         defaultValue={values?.[ciudad_field]}
         label="Ciudad"
         data={ciudades}
         onChange={(value) => {
           setFieldValue(ciudad_field, value);
+          setFieldTouched(ciudad_field, true);
         }}
       />
-      {errors?.[ciudad_field] && <p>{errors?.[ciudad_field]}</p>}
+      {errors?.[ciudad_field] && (
+        <p className="text-red-500">{errors?.[ciudad_field]}</p>
+      )}
     </>
   );
 };
