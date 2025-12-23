@@ -1,4 +1,5 @@
 import { BreadCrumb } from "@/components/BreadCrumb/BreadCrumb";
+import { PersonaForm } from "@/components/Personas/PersonaForm/PersonaForm";
 
 export const VerPersona = () => {
   return (
@@ -17,6 +18,9 @@ export const VerPersona = () => {
           },
         ]}
       />
+      <div className="mt-4">
+        <PersonaForm personaId={1} />
+      </div>
     </>
   );
 };

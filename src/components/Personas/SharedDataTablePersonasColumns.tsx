@@ -34,7 +34,7 @@ export const columnsPersonas = [
   {
     id: "actions",
     header: "",
-    cell: ({ row }) => {
+    cell: ({ row }: { row: any }) => {
       const navigate = useNavigate();
       return (
         <>

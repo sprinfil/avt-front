@@ -19,7 +19,7 @@ export const CrearPersona = () => {
         ]}
       />
       <div className="mt-4">
-        <PersonaForm />
+        <PersonaForm personaId={null}/>
       </div>
     </>
   );

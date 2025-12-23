@@ -7,10 +7,21 @@ import { usePersonaFormData, type Referencia } from "./usePersonaFormData";
 import { SharedSelect } from "@/components/SharedSelect/SharedSelect";
 import { Input } from "@/components/ui/input";
 import { SelectorPais } from "@/components/SelectorPais/SelectorPais";
+import { useState } from "react";
 
-export const PersonaForm = () => {
-  const { personaFormInitialValues, PersonaSchema, calcularEdad } =
-    usePersonaFormData();
+type PersonaFormProps = {
+  personaId: number | null;
+};
+
+export const PersonaForm = ({ personaId }: PersonaFormProps) => {
+  const {
+    personaFormInitialValues,
+    PersonaSchema,
+    calcularEdad,
+    editando,
+    setEditando,
+    guardarDatos,
+  } = usePersonaFormData(personaId);
 
   return (
     <>
@@ -31,10 +42,42 @@ export const PersonaForm = () => {
           setFieldTouched,
         }) => (
           <Form>
-            <Button type="submit" className="mb-5">
-              Guardar {icons.guardar()}
-            </Button>
-            <div className="grid gap-4 grid-cols-1 md:grid-cols-2 pb-10">
+            <div className="flex gap-2 items-center mb-5">
+              {editando ? (
+                <>
+                  <Button
+                    type="submit"
+                    className=""
+                    onClick={() => {
+                      guardarDatos();
+                    }}
+                  >
+                    Guardar {icons.guardar()}
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    type="submit"
+                    className=""
+                    onClick={() => {
+                      setEditando(true);
+                    }}
+                  >
+                    Editar {icons.editar()}
+                  </Button>
+                </>
+              )}
+              {personaId != null && (
+                <Button variant={"accion"}>Exportar ficha{icons.pdf()}</Button>
+              )}
+            </div>
+
+            <div
+              className={`grid gap-4 grid-cols-1 md:grid-cols-2 pb-10 ${
+                editando ? "" : "pointer-events-none"
+              }`}
+            >
               <Card className="bg-[#FAFBFC]">
                 <CardHeader>
                   <CardTitle>Información personal</CardTitle>
@@ -347,10 +390,17 @@ export const PersonaForm = () => {
                     {({ push, remove }) => (
                       <div className="flex flex-col gap-4">
                         {values.referencias.map((_, index) => (
-                          <div
-                            key={index}
-                            className=" p-4 flex flex-col gap-2"
-                          >
+                          <div key={index} className=" p-4 flex flex-col gap-2">
+                            {values.referencias.length > 0 && editando && (
+                              <Button
+                                type="button"
+                                variant="destructive"
+                                className="self-end mt-2"
+                                onClick={() => remove(index)}
+                              >
+                                {icons.eliminar()}
+                              </Button>
+                            )}
                             <SharedInput
                               label="Nombre"
                               name={`referencias[${index}].nombres`}
@@ -395,29 +445,20 @@ export const PersonaForm = () => {
                               }
                               placeholder="Parentesco"
                             />
-
-                            {values.referencias.length > 1 && (
-                              <Button
-                                type="button"
-                                variant="destructive"
-                                className="self-end mt-2"
-                                onClick={() => remove(index)}
-                              >
-                                Eliminar referencia
-                              </Button>
-                            )}
                           </div>
                         ))}
 
-                        <Button
-                          type="button"
-                          variant="outline"
-                          onClick={() =>
-                            push({ nombres: "", celular: "", parentesco: "" })
-                          }
-                        >
-                          + Agregar referencia
-                        </Button>
+                        {editando && (
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() =>
+                              push({ nombres: "", celular: "", parentesco: "" })
+                            }
+                          >
+                            + Agregar referencia
+                          </Button>
+                        )}
                       </div>
                     )}
                   </FieldArray>

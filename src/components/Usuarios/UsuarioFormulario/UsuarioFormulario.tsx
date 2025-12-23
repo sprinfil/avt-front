@@ -5,12 +5,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 
 export const UsuarioFormulario = () => {
@@ -90,7 +85,7 @@ export const UsuarioFormulario = () => {
                     }
                   />
                 </div>
-                <Button variant={"accion"} className="mt-4 ml-auto">
+                <Button className="mt-4 ml-auto">
                   Aceptar {icons.guardar()}
                 </Button>
               </Form>

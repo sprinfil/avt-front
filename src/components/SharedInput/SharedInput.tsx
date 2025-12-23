@@ -15,9 +15,11 @@ export const SharedInput = ({
 }: SharedInputProps) => {
   return (
     <>
-      {label && <p className="text-sm text-foreground ml-1">{label}</p>}
-      <Input className={className} type={type} {...props} />
-      {error && <p className="text-sm text-red-500">{error}</p>}
+      <div className="flex flex-col gap-2">
+        {label && <p className="text-sm text-foreground ml-1">{label}</p>}
+        <Input className={className} type={type} {...props} />
+        {error && <p className="text-sm text-red-500">{error}</p>}
+      </div>
     </>
   );
 };

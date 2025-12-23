@@ -18,7 +18,9 @@ export const UsuariosVer = () => {
           },
         ]}
       />
-      <UsuarioFormulario />
+      <div className="mt-4">
+        <UsuarioFormulario />
+      </div>
     </>
   );
 };

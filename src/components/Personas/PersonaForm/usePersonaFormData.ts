@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 
 export type Referencia = {
@@ -7,7 +7,7 @@ export type Referencia = {
   parentesco: string;
 };
 
-export const usePersonaFormData = () => {
+export const usePersonaFormData = (personaId: number | null) => {
   const [personaFormInitialValues, setPersonaInitialValues] = useState({
     // Datos personales
     nombres: "", //
@@ -148,5 +148,31 @@ export const usePersonaFormData = () => {
     return edad;
   };
 
-  return { personaFormInitialValues, PersonaSchema, calcularEdad };
+  const [editando, setEditando] = useState(false);
+
+  useEffect(() => {
+    if (personaId == null) {
+      setEditando(true);
+    } else {
+      setEditando(false);
+    }
+  }, [personaId]);
+
+  const guardarDatos = () => {
+    if (personaId) {
+      alert("editar datos");
+    } else {
+      alert("crear datos");
+    }
+    setEditando(false);
+  };
+
+  return {
+    personaFormInitialValues,
+    PersonaSchema,
+    calcularEdad,
+    editando,
+    setEditando,
+    guardarDatos,
+  };
 };
