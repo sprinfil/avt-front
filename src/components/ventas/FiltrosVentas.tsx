@@ -1,4 +1,3 @@
-import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { icons } from "@/lib/icons";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +13,7 @@ export const FiltrosVentas = () => {
             className="ml-auto md:hidden flex w-full"
             variant={"accion"}
             onClick={() => {
-              navigate("/dashboard/personasCrear");
+              navigate("/dashboard/ventasCrear");
             }}
           >
             Agregar venta
@@ -39,7 +38,7 @@ export const FiltrosVentas = () => {
             className="ml-auto hidden md:flex"
             variant={"accion"}
             onClick={() => {
-              navigate("/dashboard/personasCrear");
+              navigate("/dashboard/ventasCrear");
             }}
           >
             Agregar venta

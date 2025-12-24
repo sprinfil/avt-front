@@ -13,7 +13,7 @@ type SharedSelectProps = {
   label?: string;
   error?: string;
   value?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: any) => void;
 };
 
 export const SharedSelect = ({

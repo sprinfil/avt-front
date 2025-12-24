@@ -40,7 +40,7 @@ export function SharedComboBox({
   return (
     <>
       {label ?? <p>{label}</p>}
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover open={open} onOpenChange={setOpen} >
         <PopoverTrigger asChild>
           <Button
             variant="outline"
