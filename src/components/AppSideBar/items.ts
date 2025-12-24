@@ -8,7 +8,7 @@ import {
 
 export const items = [
   {
-    title: "Zonas",
+    title: "Predios",
     url: "zonas",
     icon: Map,
   },

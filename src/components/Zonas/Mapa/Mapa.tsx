@@ -21,7 +21,7 @@ export const Mapa = () => {
 
   return (
     <>
-      <p className="text-2xl mb-4">Zonas</p>
+      <p className="text-2xl mb-4">Predios</p>
       <MapContainer
         center={[24.139971095859845, -110.3137883959629]}
         zoom={16}
