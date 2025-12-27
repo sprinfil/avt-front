@@ -4,6 +4,7 @@ import {
   CircleDollarSign,
   HandCoins,
   Users,
+  Store,
 } from "lucide-react";
 
 export const items = [
@@ -13,14 +14,19 @@ export const items = [
     icon: Map,
   },
   {
-    title: "Personas",
-    url: "personas",
-    icon: CircleUserRound,
+    title: "POS predios",
+    url: "POSPredios",
+    icon: Store,
   },
   {
     title: "Ventas",
     url: "ventas",
     icon: CircleDollarSign,
+  },
+  {
+    title: "Personas",
+    url: "personas",
+    icon: CircleUserRound,
   },
   {
     title: "Pagos",
@@ -32,4 +38,5 @@ export const items = [
     url: "usuarios",
     icon: Users,
   },
+
 ];

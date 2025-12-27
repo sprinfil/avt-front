@@ -6,6 +6,7 @@ import {
   PhoneCall,
   Save,
   SquarePen,
+  Store,
   Trash2,
 } from "lucide-react";
 import { FaUser, FaWhatsapp } from "react-icons/fa";
@@ -20,4 +21,5 @@ export const icons = {
   pdf: (styles: string | void) => <FileSymlink className={styles ?? ""} />,
   whatsapp: (styles: string | void) => <FaWhatsapp className={styles ?? ""} />,
   telefono: (styles: string | void) => <PhoneCall className={styles ?? ""} />,
+  pos: (styles: string | void) => <Store className={styles ?? ""} />,
 };

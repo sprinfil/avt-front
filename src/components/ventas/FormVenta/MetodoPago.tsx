@@ -1,14 +1,10 @@
 import { SharedInput } from "@/components/SharedInput/SharedInput";
 import { SharedMoneyInput } from "@/components/SharedMoneyInput/SharedMoneyInput";
 import { SharedSelect } from "@/components/SharedSelect/SharedSelect";
+import type { formaPago } from "@/lib/Ventas/types";
 import { useState } from "react";
 
-type formaPago =
-  | "efectivo"
-  | "tarjeta_debito"
-  | "tarjeta_credito"
-  | "cheque"
-  | "transferencia";
+
 export const MetodoPago = () => {
   const [metodoPago, setMetodoPago] = useState<"meses" | "contado">("meses");
   const [formaPago, setFormaPago] = useState<formaPago>("efectivo");

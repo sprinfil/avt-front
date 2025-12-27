@@ -7,6 +7,7 @@ type SharedMoneyInput = {
   Input: ComponentType<InputAttributes> | undefined;
   label: string;
   error?: string;
+  className?: string;
 };
 
 export const SharedMoneyInput = ({
@@ -15,6 +16,7 @@ export const SharedMoneyInput = ({
   Input,
   label,
   error,
+  className
 }: SharedMoneyInput) => {
   return (
     <>
@@ -28,6 +30,7 @@ export const SharedMoneyInput = ({
           thousandSeparator={true}
           prefix={"$"}
           decimalScale={2}
+          className={className}
           fixedDecimalScale={true}
           allowNegative={false}
           placeholder={label}
