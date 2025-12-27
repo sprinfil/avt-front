@@ -13,6 +13,7 @@ import { CrearPersona } from "./views/Personas/CrearPersona";
 import { VerPersona } from "./views/Personas/VerPersona";
 import { VentasCrear } from "./views/Ventas/VentasCrear";
 import { POSPredios } from "./views/Ventas/POSPredios";
+import { VentasVer } from "./views/Ventas/VentasVer";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "ventasCrear",
         element: <VentasCrear />,
+      },
+      {
+        path: "ventasVer",
+        element: <VentasVer />,
       },
       {
         path: "POSPredios",

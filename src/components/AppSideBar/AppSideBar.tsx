@@ -16,6 +16,7 @@ import ZustandPrincipal from "@/lib/ZustandPrincipal";
 import { Button } from "../ui/button";
 import { LogOut, User } from "lucide-react";
 import { images } from "@/lib/images";
+import { SharedInput } from "../SharedInput/SharedInput";
 
 export function AppSidebar() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ export function AppSidebar() {
           {/* <SidebarGroupLabel>AVT</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
+              <SharedInput label="" placeholder="Folio de contrato"/>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton

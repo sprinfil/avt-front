@@ -29,7 +29,7 @@ export const items = [
     icon: CircleUserRound,
   },
   {
-    title: "Pagos",
+    title: "Pagos a dueños",
     url: "pagos",
     icon: HandCoins,
   },

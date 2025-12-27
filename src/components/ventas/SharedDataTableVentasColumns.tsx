@@ -90,7 +90,7 @@ export const columnsVentas = [
             </Button>
             <Button
               onClick={() => {
-                navigate("/dashboard/personasVer");
+                navigate("/dashboard/ventasVer");
               }}
             >
               {icons.ver()}

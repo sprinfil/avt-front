@@ -1,5 +1,6 @@
 import {
   BadgePlus,
+  ExternalLink,
   Eye,
   File,
   FileSymlink,
@@ -22,4 +23,5 @@ export const icons = {
   whatsapp: (styles: string | void) => <FaWhatsapp className={styles ?? ""} />,
   telefono: (styles: string | void) => <PhoneCall className={styles ?? ""} />,
   pos: (styles: string | void) => <Store className={styles ?? ""} />,
+  link: (styles: string | void) => <ExternalLink className={styles ?? ""} />,
 };

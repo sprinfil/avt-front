@@ -1,7 +1,11 @@
 import { MapContainer, Polygon, TileLayer, Popup } from "react-leaflet";
 import type { LatLngTuple } from "leaflet";
 
-export const PosMapaMostrarPredio = () => {
+type PosMapaMostrarPredioProps = {
+  height?: string;
+}
+
+export const PosMapaMostrarPredio = ({ height = "300px" }: PosMapaMostrarPredioProps) => {
   const poligonos: {
     id: number;
     nombre: string;
@@ -24,7 +28,7 @@ export const PosMapaMostrarPredio = () => {
       <MapContainer
         center={[24.139971095859845, -110.3137883959629]}
         zoom={14.5}
-        style={{ height: "300px", width: "100%", borderRadius: "20px" }}
+        style={{ height: height, width: "100%", borderRadius: "20px" }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
