@@ -1,5 +1,6 @@
 import {
   BadgePlus,
+  CircleX,
   ExternalLink,
   Eye,
   File,
@@ -24,4 +25,5 @@ export const icons = {
   telefono: (styles: string | void) => <PhoneCall className={styles ?? ""} />,
   pos: (styles: string | void) => <Store className={styles ?? ""} />,
   link: (styles: string | void) => <ExternalLink className={styles ?? ""} />,
+  cancelar: (styles: string | void) => <CircleX className={styles ?? ""} />,
 };

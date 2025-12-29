@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/popover";
 
 type SharedComboBoxProps = {
-  label?: string;
+  label?: string | React.ReactElement;
   data: { label: string; value: string }[];
   onChange?: (value: string) => void;
   defaultValue: any;
@@ -30,17 +30,19 @@ export function SharedComboBox({
   label = "",
   data = [],
   onChange,
-  defaultValue
+  defaultValue,
 }: SharedComboBoxProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
-  React.useEffect(()=>{setValue(defaultValue)},[defaultValue])
+  React.useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
 
   return (
     <>
-      {label ?? <p>{label}</p>}
-      <Popover open={open} onOpenChange={setOpen} >
+      {typeof label === "string" ? <p>{label}</p> : label}
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
@@ -56,7 +58,10 @@ export function SharedComboBox({
         </PopoverTrigger>
         <PopoverContent className="w-[400px] p-0">
           <Command>
-            <CommandInput placeholder={label} className="h-9" />
+            <CommandInput
+              placeholder={typeof label === "string" ? label : ""}
+              className="h-9"
+            />
             <CommandList>
               <CommandEmpty>Sin datos.</CommandEmpty>
               <CommandGroup>

@@ -24,19 +24,18 @@ export const items = [
     icon: CircleDollarSign,
   },
   {
-    title: "Personas",
-    url: "personas",
-    icon: CircleUserRound,
-  },
-  {
     title: "Pagos a dueños",
     url: "pagos",
     icon: HandCoins,
+  },
+  {
+    title: "Personas",
+    url: "personas",
+    icon: CircleUserRound,
   },
   {
     title: "Usuarios",
     url: "usuarios",
     icon: Users,
   },
-
 ];

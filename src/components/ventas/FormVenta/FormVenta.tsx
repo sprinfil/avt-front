@@ -3,6 +3,7 @@ import { SharedInput } from "@/components/SharedInput/SharedInput";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapaSeleccionarPredio } from "./MapaSeleccionarPredio";
 import { MetodoPago } from "./MetodoPago";
+import { Button } from "@/components/ui/button";
 
 export const FormVenta = () => {
   return (
@@ -14,9 +15,34 @@ export const FormVenta = () => {
           </CardHeader>
           <CardContent>
             <div className="flex flex-col gap-2">
-              <SharedComboBox label="Comprador" data={[]} defaultValue={{}} />
-
-              <SharedComboBox label="Aval" data={[]} defaultValue={{}} />
+              <SharedComboBox
+                label={
+                  <>
+                    <div className="flex items-center gap-2">
+                      Seleccionar Comprador o{" "}
+                      <p className="hover:underline cursor-pointer font-medium text-accion">
+                        Crear comprador
+                      </p>
+                    </div>
+                  </>
+                }
+                data={[]}
+                defaultValue={{}}
+              />
+              <SharedComboBox
+                label={
+                  <>
+                    <div className="flex items-center gap-2">
+                      Seleccionar Aval o{" "}
+                      <p className="hover:underline cursor-pointer font-medium text-accion">
+                        Crear Aval
+                      </p>
+                    </div>
+                  </>
+                }
+                data={[]}
+                defaultValue={{}}
+              />
             </div>
           </CardContent>
         </Card>
@@ -39,7 +65,6 @@ export const FormVenta = () => {
           </CardHeader>
           <CardContent className="flex flex-col gap-3">
             <MetodoPago />
-
           </CardContent>
         </Card>
       </div>

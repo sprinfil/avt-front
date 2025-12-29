@@ -31,7 +31,7 @@ export function AppSidebar() {
           {/* <SidebarGroupLabel>AVT</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
-              <SharedInput label="" placeholder="Folio de contrato"/>
+              <SharedInput label="" placeholder="Folio de contrato" />
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
