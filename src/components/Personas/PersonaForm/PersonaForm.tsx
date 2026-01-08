@@ -7,7 +7,6 @@ import { usePersonaFormData, type Referencia } from "./usePersonaFormData";
 import { SharedSelect } from "@/components/SharedSelect/SharedSelect";
 import { Input } from "@/components/ui/input";
 import { SelectorPais } from "@/components/SelectorPais/SelectorPais";
-import { useState } from "react";
 
 type PersonaFormProps = {
   personaId: number | null;

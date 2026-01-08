@@ -4,7 +4,6 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -27,7 +26,7 @@ export function AppSidebar() {
     <Sidebar variant="floating">
       <SidebarContent>
         <SidebarGroup>
-          <img src={images.logo} className="w-[50px] w-[50px]" alt="" />
+          <img src={images.logo} className="w-[50px]" alt="" />
           {/* <SidebarGroupLabel>AVT</SidebarGroupLabel> */}
           <SidebarGroupContent>
             <SidebarMenu>
