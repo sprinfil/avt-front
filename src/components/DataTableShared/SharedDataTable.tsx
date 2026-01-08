@@ -20,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import LoaderHorizontal from "../LoaderHorizontal/LoaderHorizontal";
 
 // export const columns: ColumnDef<Payment>[] = [
 //   {
@@ -34,9 +35,14 @@ import {
 type SharedDataTableProps = {
   columns?: any[];
   data?: any[];
+  loading?: boolean;
 };
 
-export function SharedDataTable({ columns = [], data = [] }: SharedDataTableProps) {
+export function SharedDataTable({
+  columns = [],
+  data = [],
+  loading = false,
+}: SharedDataTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -87,6 +93,14 @@ export function SharedDataTable({ columns = [], data = [] }: SharedDataTableProp
             ))}
           </TableHeader>
           <TableBody>
+            {loading && (
+              <TableRow>
+                <TableCell className="p-0" colSpan={columns.length}>
+                  <LoaderHorizontal styles="w-full" />
+                </TableCell>
+              </TableRow>
+            )}
+
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
