@@ -1,7 +1,9 @@
 import { BreadCrumb } from "@/components/BreadCrumb/BreadCrumb";
 import { UsuarioFormulario } from "@/components/Usuarios/UsuarioFormulario/UsuarioFormulario";
+import { useParams } from "react-router-dom";
 
 export const UsuariosVer = () => {
+  const params = useParams();
   return (
     <>
       <p className="text-2xl mb-1">Josue díaz</p>
@@ -19,7 +21,7 @@ export const UsuariosVer = () => {
         ]}
       />
       <div className="mt-4">
-        <UsuarioFormulario />
+        <UsuarioFormulario idUser={params?.idUser}/>
       </div>
     </>
   );

@@ -29,11 +29,12 @@ export const columnsUsuarios = [
     header: "",
     cell: ({ row }: { row: any }) => {
       const navigate = useNavigate();
+console.log(row?.original?.value)
       return (
         <>
           <Button
             onClick={() => {
-              navigate("/dashboard/usuariosVer");
+              navigate("/dashboard/usuariosVer/" + row?.original?.value);
             }}
           >
             {icons.ver()}

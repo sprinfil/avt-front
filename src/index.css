@@ -124,4 +124,13 @@
   body {
     @apply bg-background text-foreground;
   }
+  [data-sonner-toast][data-type="error"] {
+    --normal-bg: theme(colors.red.900);
+    --normal-text: theme(colors.red.100);
+  }
+    [data-sonner-toast][data-type="success"] {
+    --normal-bg: theme(colors.green.500);
+    --normal-text: theme(colors.white);
+  }
 }
+
