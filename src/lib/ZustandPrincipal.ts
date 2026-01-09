@@ -1,20 +1,27 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import type { User } from "./User/UserTypes";
 
 type state = {
-  user: any;
+  user: User;
   token: string;
   opcionMenu: string;
   setOpcionMenu: (opcionTemp: string) => void;
   setToken: (tokenTemp: string) => void;
-  setUser: (userData: any) => void;
+  setUser: (userData: User) => void;
 };
 
 const ZustandPrincipal = create(
   persist(
     (set) => ({
-      user: {},
-      setUser: (userData: any) => set({ user: userData }),
+      user: {
+        id: 0,
+        name: "",
+        username: "",
+        created_at: "",
+        updated_at: "",
+      },
+      setUser: (userData: User) => set({ user: userData }),
 
       token: "",
       setToken: (tokenTemp: string) => set({ token: tokenTemp }),

@@ -16,7 +16,7 @@ export const SharedButton = ({
 }: SharedButtonProps) => {
   return (
     <>
-      <Button disabled={loading} className={className} {...props}>
+      <Button disabled={loading} className={`min-w-[100px] ${className}`} {...props}>
         {loading ? (
           <>
             <LoaderHorizontal styles={"w-full"} />

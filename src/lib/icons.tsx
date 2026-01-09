@@ -1,5 +1,6 @@
 import {
   BadgePlus,
+  CircleCheckBig,
   CircleX,
   ExternalLink,
   Eye,
@@ -26,4 +27,5 @@ export const icons = {
   pos: (styles: string | void) => <Store className={styles ?? ""} />,
   link: (styles: string | void) => <ExternalLink className={styles ?? ""} />,
   cancelar: (styles: string | void) => <CircleX className={styles ?? ""} />,
+  confirmar: (styles: string | void) => <CircleCheckBig className={styles ?? ""} />,
 };

@@ -20,7 +20,11 @@ export const formatearFecha = (fecha: string | Date): string => {
   const mes = String(date.getMonth() + 1).padStart(2, "0");
   const anio = date.getFullYear();
 
-  return `${dia}/${mes}/${anio}`;
+  const horas = String(date.getHours()).padStart(2, "0");
+  const minutos = String(date.getMinutes()).padStart(2, "0");
+  const segundos = String(date.getSeconds()).padStart(2, "0");
+
+  return `${dia}/${mes}/${anio} ${horas}:${minutos}:${segundos}`;
 };
 
 export const catchErrors = async (

@@ -21,7 +21,7 @@ export function AppSidebar() {
   const navigate = useNavigate();
   const { logOut } = useLogOut();
   const { opcionMenu, setOpcionMenu } = ZustandPrincipal();
-
+  const { user } = ZustandPrincipal();
   return (
     <Sidebar variant="floating">
       <SidebarContent>
@@ -63,9 +63,9 @@ export function AppSidebar() {
                 <User className="h-5 w-5 text-muted-foreground" />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-medium">Josue Díaz</span>
+                <span className="text-sm font-medium">{user?.name}</span>
                 <span className="text-xs text-muted-foreground">
-                  Administrador
+                  @ {user?.username}
                 </span>
               </div>
             </div>

@@ -1,10 +1,10 @@
 import axiosClient from "@/axios-client";
-import type { StoreUser, UpdateUser } from "./UserTypes";
+import type { StoreUser, UpdateUser, userIndexParams } from "./UserTypes";
 
 export const UserService = {
-  index: async () => {
+  index: async (params: userIndexParams) => {
     try {
-      const response = await axiosClient.get("/users/select");
+      const response = await axiosClient.get("/users", { params: params });
       return response;
     } catch (error) {
       throw error;
@@ -33,5 +33,15 @@ export const UserService = {
     } catch (error) {
       throw error;
     }
-  }
+  },
+  toggleStatus: async (userId: number | string | null, is_active: boolean) => {
+    try {
+      const response = await axiosClient.patch("/users/" + userId + "/active", {
+        is_active: is_active,
+      });
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
